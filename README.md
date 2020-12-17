@@ -4,7 +4,7 @@ If you would prefer to reuse this library in other projects I recommend checking
 
 # Below are instructions how to build an internal "library" just for one project
 
-    cargo new leonhard --lib     # your new library name
+    cargo new leonhard_lib --lib     # your new library name
     cdd                          # cd into newest created folder
 
 `src/lib.rs is` where you add this code:
@@ -20,10 +20,10 @@ In order for the module to be accessible it must be pub. Same goes for the metho
 
 # Cargo.toml
 
-Requires the absolute or relative path to the dependency, in this case the library called `leonhard`.
+Requires the absolute or relative path to the dependency, in this case the library called `leonhard_lib`.
 
     [dependencies]
-    leonhard = {path = "../leonhard"}
+    leonhard_lib = {path = "../leonhard_lib"}
 
 Because all of your rust projects should live at the top level `~/code/rust/` you can then easily use relative paths, reuse a ton of code and be setup nicely for git and a github repository for your library.
 And with that our rather simple library is ready for use in some project
@@ -33,13 +33,13 @@ And with that our rather simple library is ready for use in some project
 
 # main.rs
 
-    use leonhard::file_io;
+    use leonhard_lib::file_io;
 
     fn main() {
         file_io::some_function();
     }
 
-Here we import the library called `leonhard` but only the module `file_io`, so if there are more modules they are intentionally not accessible for now.
+Here we import the library called `leonhard_lib` but only the module `file_io`, so if there are more modules they are intentionally not accessible for now.
 
 Calling `file_io::some_function();` to execute when the program runs.
 
@@ -53,7 +53,7 @@ To both build and run you can use:
 
     cargo test; cargo run;
 
-Note that you do not need to navigate down the tree to your library folder `leonhard`, when build or run occur the library will be complied. Thus adding more methods to lib.rs you save some navigation effort too.
+Note that you do not need to navigate down the tree to your library folder `leonhard_lib`, when build or run occur the library will be complied. Thus adding more methods to lib.rs you save some navigation effort too.
 
 ---
 
@@ -66,7 +66,7 @@ Below are instructions how to use a library for just for one project, aka not re
     cargo new create_use_library # your project folder name
     cdd                          # cd into newest created folder
     cd src                       # where your library folder lives
-    cargo new leonhard --lib     # your new library name
+    cargo new leonhard_lib --lib     # your new library name
 
 `src/lib.rs is` where you add this code:
 
@@ -81,17 +81,17 @@ In order for the module to be accessible it must be pub. Same goes for the metho
 
 # Cargo.toml
 
-Requires the absolute or relative path to the dependency, in this case the library called `leonhard`.
+Requires the absolute or relative path to the dependency, in this case the library called `leonhard_lib`.
 
 # main.rs
 
-    use leonhard::file_io;
+    use leonhard_lib::file_io;
 
     fn main() {
         file_io::some_function();
     }
 
-Here we import the library called `leonhard` but only the module `file_io`, so if there are more modules they are intentionally not accessible for now.
+Here we import the library called `leonhard_lib` but only the module `file_io`, so if there are more modules they are intentionally not accessible for now.
 
 Calling `file_io::some_function();` to execute when the program runs.
 
@@ -105,6 +105,6 @@ To both build and run you can use:
 
     cargo test; cargo run;
 
-Note that you do not need to navigate down the tree to your library folder `leonhard`, when build or run occur the library will be complied. Thus adding more methods to lib.rs you save some navigation effort too.
+Note that you do not need to navigate down the tree to your library folder `leonhard_lib`, when build or run occur the library will be complied. Thus adding more methods to lib.rs you save some navigation effort too.
 
-This however is not the case for `cargo test` from the top level. That will not run your module level unit tests (aka `leonhard`) has some tests that are ran if you instead run `cargo test --package leonhard` which will run only the tests from that package, from the top level without navigating down.
+This however is not the case for `cargo test` from the top level. That will not run your module level unit tests (aka `leonhard_lib`) has some tests that are ran if you instead run `cargo test --package leonhard_lib` which will run only the tests from that package, from the top level without navigating down.
