@@ -2,7 +2,7 @@
 
 If you would prefer to reuse this library in other projects I recommend checking it into git and tossing it up on github. If you only will use this library internal please scroll down to that section.
 
-# Below are instructions how to build an internal "library" just for one project
+# Below are instructions how to build an external "library"
 
     cargo new leonhard_lib --lib     # your new library name
     cdd                          # cd into newest created folder
