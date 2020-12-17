@@ -15,10 +15,13 @@ pub mod file_io {
         let file = File::open(filename)?;
         Ok(io::BufReader::new(file).lines())
     }
+    // notice println! is using hexadecimal escape strings to turn the code red
     pub fn read_lines_example() {
         println!(
             "{}",
-            "
+            "\x1b[0;31m
+
+
 use leonhard_lib::file_io;
 
 let mut rows: Vec<String> = Vec::new();
@@ -29,7 +32,9 @@ if let Ok(lines) = file_io::read_lines('./data/day3.txt') {
         }
     }
 }
-            "
+
+            \x1b[0m"
         );
+        // TODO: print rust code to terminal with color syntax
     }
 }
