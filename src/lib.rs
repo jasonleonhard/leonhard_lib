@@ -19,8 +19,7 @@ pub mod file_io {
     pub fn read_lines_example() {
         println!(
             "{}",
-            "\x1b[0;31m
-
+            "// read_lines() example usage
 
 use leonhard_lib::file_io;
 
@@ -33,8 +32,7 @@ if let Ok(lines) = file_io::read_lines('./data/day3.txt') {
     }
 }
 
-            \x1b[0m"
+"
         );
-        // TODO: print rust code to terminal with color syntax
     }
 }
